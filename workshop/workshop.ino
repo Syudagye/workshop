@@ -48,7 +48,10 @@ void loop() {
   if (Serial.available() > 0) {
     String req = Serial.readStringUntil('\n');
     if (req == "getcode") {
-      Serial.println(pass);
+      for (int i = 0; i < 4; i++) {
+        Serial.print(pass[i]);
+      }
+      Serial.print('\n');
     } else if (req == "setcode") {
       String data = Serial.readStringUntil('\n');
       char arr[5];
