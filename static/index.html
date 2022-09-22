@@ -1,0 +1,88 @@
+<html>
+    <head>
+        <script src="https://randojs.com/1.0.0.js"></script>
+        <script>
+var password;
+
+function start() {
+    askPassword();
+    fetchCode();
+}
+
+function askPassword() {
+    password = prompt("Mot de Passe");
+}
+async function fetchCode() {
+    fetch(window.location + "getcode?mdp=" + password).then(res => {
+        if (res.status == 401) {
+            alert("mot de passe incorrect");
+        } else if (res.status == 200) {
+            return res.json()
+        }
+    }).then(data => {
+        document.getElementById("myNumber").innerHTML = data.code;
+    });
+}
+async function regenCode() {
+    let code = Math.floor(1000 + Math.random() * 9000);
+    fetch(window.location + "setcode?mdp=" + password + "&code=" + code).then(res => {
+        if (res.status == 401) {
+            alert("mot de passe incorrect");
+        } else if (res.status == 200) {
+            fetchCode();
+        }
+    });
+}
+        </script>
+    </head>
+    <body onload="start();">
+        <h1>Code:</h1>
+        <div id="myNumber"></div>
+        <button onclick="regenCode();">Régénérer le code</button>
+
+  <!-- <div id="Page1"> -->
+  <!--   Content of page 1 -->
+  <!--   <SCRIPT LANGUAGE="JavaScript"> -->
+  <!--   <!-- -->
+  <!--   function retrace() -->
+  <!--   { -->
+  <!--   history.go(-1); -->
+  <!--   } -->
+  <!--   var retour=retrace; -->
+  <!--   var password="cle"; -->
+  <!--   var name = prompt("mot de passe",""); -->
+  <!--   if(name ==password) -->
+  <!--   { (alert ("mot de passe correct")); -->
+  <!---->
+  <!---->
+  <!---->
+  <!--   } -->
+  <!--   else{ alert("mot de passe incorrect"); retrace()} -->
+  <!---->
+  <!---->
+  <!--   </SCRIPT> -->
+  <!--   <a href="#" onclick="return show('Page2','Page1');">Show page 2</a> -->
+  <!-- </div> -->
+  <!---->
+  <!-- <div id="Page2" style="display:none"> -->
+  <!--   <html> -->
+  <!--    <head> -->
+  <!--        <script src="https://randojs.com/1.0.0.js"></script> -->
+  <!--        <script> -->
+  <!--            function showRandomNumber(){ -->
+  <!--                document.getElementById("myNumber").innerHTML = rando(1000, 9999); -->
+  <!--            } -->
+  <!--        </script> -->
+  <!--        <style> -->
+  <!--            #myNumber{ -->
+  <!--                font-size:100px; -->
+  <!--                text-align:center; -->
+  <!--                margin:50px auto; -->
+  <!--                font-family:Arial, sans-serif; -->
+  <!--            } -->
+  <!--        </style> -->
+  <!--    </head> -->
+  <!--   <body onload="showRandomNumber();"> -->
+  <!--       <div id="myNumber"></div> -->
+  <!--   </body> -->
+</html>
