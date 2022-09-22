@@ -4,7 +4,7 @@ import flask
 import os.path
 import pathlib
 import random
-import request
+import requests
 
 app = flask.Flask(__name__)
 
