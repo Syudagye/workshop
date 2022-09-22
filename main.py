@@ -53,4 +53,4 @@ if __name__ == '__main__':
         mdp = ff.readline()[:-1]
     print(f"password is {mdp}")
 
-    app.run()
+    app.run(host="0.0.0.0")
