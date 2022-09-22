@@ -53,10 +53,12 @@ git clone https://github.com/Syudagye/workshop
 cd workshop
 ```
 
+Créez un fichier `PASS` contenant le mot de passe qui permettra d'acceder au site web.
+
 Puis lancez le script python:
 ```bash
 python main.py
 ```
 
-Une ip s'affichera dans les logs, vous pourrez l'utiliser pour vous connecter au system via un naviguateur et changer le code de la boite.
+Une ip s'affichera dans les logs, vous pourrez l'utiliser pour vous connecter au system via un naviguateur et changer le code de la boite en utilisant le mot de passe.
 (Il est préferable d'utiliser le system sur un réseau local, car il n'a pas été testé via internet).
