@@ -4,6 +4,7 @@ import flask
 import os.path
 import pathlib
 import random
+import request
 
 app = flask.Flask(__name__)
 
@@ -52,5 +53,7 @@ if __name__ == '__main__':
     with f.open() as ff:
         mdp = ff.readline()[:-1]
     print(f"password is {mdp}")
+
+    requests.get(url = "https://127.0.0.1:5000/setcode", params = {"mdp":mdp})
 
     app.run(host="0.0.0.0")
